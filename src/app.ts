@@ -13,8 +13,8 @@ app.use(cors());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/v1/user', userRoutes)
-// app.get('/api/v1/user', userRoutes);
+app.use('/api/v1/user', userRoutes);
+
 export default app;
 
 // file structure 

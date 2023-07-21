@@ -22,4 +22,4 @@ const userSchema = new Schema<IUser>({
 //! 3 creating model using interface and schema
 const User = model<IUser>('User', userSchema);
 
-export default User
+export default User;
