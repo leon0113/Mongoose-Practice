@@ -2,6 +2,7 @@ import express, { Application, NextFunction, Request, Response } from 'express';
 // npm i --save-dev @types/express
 import cors from 'cors';
 import { Schema, model } from 'mongoose';
+import userRoutes from './app/modules/user/user.route';
 // npm i --save-dev @types/cors
 
 const app: Application = express();
@@ -12,7 +13,38 @@ app.use(cors());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
+app.use('/api/v1/user', userRoutes)
+// app.get('/api/v1/user', userRoutes);
+export default app;
+
+// file structure 
+// Modular pattern
+/*
+ interface -> user.interface.ts
+ schema, model -> user.model.ts
+ route
+ route function (api router controller) -> user.controller.ts
+ Database query -> user.service.ts
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// (req: Request, res: Response, next: NextFunction) => {
 
     //? inserting a test data into mongodb 
     /*
@@ -63,42 +95,33 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
     // const User = model<IUser>('User', userSchema);
 
     //! 4 Database Query 
-    const createUserToDb = async () => {
-        const user = new User({
-            id: '100',
-            role: 'student',
-            password: 'abc123',
-            name: {
-                firstName: 'Tahjib',
-                midddleName: 'Hossain',
-                lastName: 'Leon'
-            },
-            dob: '17 Aug 1998',
-            gender: "male",
-            email: 'abc@gmail.com',
-            contactNo: '0132423',
-            emergencyContactNo: '02324',
-            presentAddress: 'Dhaka',
-            permanentAddress: 'Khulna'
-        });
-        await user.save();
-        console.log(user);
-    };
+    // const createUserToDb = async () => {
+    //     const user = new User({
+    //         id: '100',
+    //         role: 'student',
+    //         password: 'abc123',
+    //         name: {
+    //             firstName: 'Tahjib',
+    //             midddleName: 'Hossain',
+    //             lastName: 'Leon'
+    //         },
+    //         dob: '17 Aug 1998',
+    //         gender: "male",
+    //         email: 'abc@gmail.com',
+    //         contactNo: '0132423',
+    //         emergencyContactNo: '02324',
+    //         presentAddress: 'Dhaka',
+    //         permanentAddress: 'Khulna'
+    //     });
+    //     await user.save();
+    //     console.log(user);
+    // };
  
-    createUserToDb();
+    // createUserToDb();
 
     // res.send('Hello World!');
-    // next();
-})
+    // next();}
 
-export default app;
 
-// file structure 
-// Modular pattern
-/*
- interface -> user.interface.ts
- schema, model -> user.model.ts
- route
- route function (api router controller) -> user.controller.ts
- Database query -> user.service.ts
-*/
+
+
