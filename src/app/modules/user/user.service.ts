@@ -4,11 +4,13 @@ import User from "./user.model";
 //! send user to db
 export const createUserToDb = async (payload: IUser): Promise<IUser> => {
     const user = await new User(payload);    // here User in class and user is a instance of it.
-    await user.save(); // to save in the db  // isntance method
+    await user.save(); // to save in the db  // build in instance method
+    console.log(user.fullName());  // custom instance method
     return user;
 };
 //! get all users from db
 export const getUsersFromDb = async (): Promise<IUser[]> => {
+
     const users = await User.find(); // find every user
     return users;
 }
@@ -19,3 +21,11 @@ export const getUserByIdFromDb = async (payload: string): Promise<IUser | null> 
     return user;
 }
 
+//! find all admin from db
+// export const getAdmins = async (payload: string): Promise<IUser | null> => {
+    
+//     // return user;
+// }
+
+//? static methods 
+// Class -> Attach -> Method -> Directly call using class
