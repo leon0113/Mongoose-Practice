@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { createUserToDb, getUsersFromDb } from "./user.service";
+import { createUserToDb, getUserByIdFromDb, getUsersFromDb } from "./user.service";
 
 export const createUser = async (req: Request, res: Response, next: NextFunction) => {
     const data = req.body;
@@ -11,12 +11,25 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
 };
 
 export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
-    const user = await getUsersFromDb();
+    const users = await getUsersFromDb();
     res.status(200).json({
         status: "success",
-        data: user,
+        data: users,
     });
+    return users;
 };
+
+export const getUserById = async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+
+    const users = await getUserByIdFromDb(id);
+    res.status(200).json({
+        status: "success",
+        data: users,
+    });
+    return users;
+};
+
 
 // Pattern
 //!  route -> controller -> service
