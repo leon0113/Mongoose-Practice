@@ -22,10 +22,10 @@ export const getUserByIdFromDb = async (payload: string): Promise<IUser | null> 
 }
 
 //! find all admin from db
-// export const getAdmins = async (payload: string): Promise<IUser | null> => {
-    
-//     // return user;
-// }
+export const getAdmins = async () => {
+    const admins =  await User.getAdmins();
+    return admins;
+}
 
 //? static methods 
 // Class -> Attach -> Method -> Directly call using class
