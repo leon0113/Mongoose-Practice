@@ -30,7 +30,7 @@ userSchema.static('getAdmins', async function getAdmin(){
   return admins;
 })
 
-//! 3 creating model using interface and schema
+//! 3 creating model using interface and schema 
 const User = model<IUser, UserModel>('User', userSchema);
 
 export default User;
